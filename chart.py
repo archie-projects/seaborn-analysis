@@ -20,15 +20,16 @@ data = pd.DataFrame({
     'Lifetime Value ($)': lifetime_value
 })
 
-# Plot
-plt.figure(figsize=(8, 8))  # 8 inches x 8 inches
+# Create figure with exact size and dpi to get 512x512 pixels
+plt.figure(figsize=(8, 8), dpi=64)
 
-scatter = sns.scatterplot(
+# Scatterplot with edge colors and a color palette
+sns.scatterplot(
     data=data,
     x='Acquisition Cost ($)',
     y='Lifetime Value ($)',
-    palette="viridis",
     hue='Lifetime Value ($)',
+    palette='viridis',
     legend=False,
     edgecolor='black',
     s=80  # marker size
@@ -39,7 +40,6 @@ plt.title('Customer Lifetime Value vs Acquisition Cost', fontsize=18, weight='bo
 plt.xlabel('Customer Acquisition Cost ($)', fontsize=14)
 plt.ylabel('Customer Lifetime Value ($)', fontsize=14)
 
-# Tight layout and save
-plt.tight_layout()
-plt.savefig('chart.png', dpi=64, bbox_inches='tight')
+# Save the figure WITHOUT bbox_inches='tight' to preserve exact size
+plt.savefig('chart.png')
 plt.close()
